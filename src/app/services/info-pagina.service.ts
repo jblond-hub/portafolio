@@ -7,22 +7,31 @@ import { InfoPagina } from '../interface/info-pagina.interface';
 })
 export class InfoPaginaService {
 
-
   info: InfoPagina = {};
   cargada = false;
+  equipo: any [] = [];
   constructor( private http: HttpClient) {
-    //console.log('Servicio de Infopagina Listo');
+   this.cargarInfo();
+   this.cargarEquipo();
+    }
 
-    //Leer Archivo Json
+    private cargarInfo(){
+      //Leer Archivo Json
     this.http.get('assets/data/data-pagina.json')
-        .subscribe( (resp: InfoPagina) => {
-          this.cargada = true;
-          this.info = resp;
-     // console.log(resp);
-     // console.log( resp['twitter']);
-     console.log(resp);
+    .subscribe( (resp: InfoPagina) => {
+      this.cargada = true;
+      this.info = resp;
+
 
     });
-
    }
+  private cargarEquipo() {
+    this.http.get('https://proyecto-jorge-angular.firebaseio.com/equipo.json')
+    .subscribe( (resp: any []) => {
+      this.equipo = resp;
+      console.log(resp);
+    });
+
+  }
+
 }
