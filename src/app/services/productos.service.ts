@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Producto } from '../interface/producto.interface';
-import { ConsoleReporter } from 'jasmine';
-import { resolve } from 'dns';
-import { rejects } from 'assert';
 
 
 @Injectable({
